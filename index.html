@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .addtassk{
+            width:300px;
+            height: 400px;
+        
+        }
+    </style>
+</head>
+<body class="bg-info">
+   
+    
+    <div class="mt-5 ms-5  d-flex justify-content-center m-auto">
+       
+        <input class="form-control  w-25" type="text">
+     
+        <button class="btn btn-outline-danger fw-bold ms-2">Add</button>
+
+        
+    </div>
+    
+    <div class="addtassk mt-5 m-auto bg-white">
+      <ul class="ps-5 pt-3  ullll fs-3">
+       
+      </ul>
+    </div>
+
+
+
+
+</body>
+<script > 
+
+let a=document.getElementsByClassName("btn")[0]
+
+a.addEventListener("click",()=>{
+   
+  let b=document.getElementsByClassName("form-control")[0].value
+  let addddd=JSON.parse(localStorage.getItem("todo"))?? []
+  console.log(addddd)
+    let addd={
+        id:addddd.length,
+        valuee:b
+    }
+    addddd.push(addd)
+    localStorage.setItem("todo",JSON.stringify(addddd))
+    show()
+
+})
+ function show()
+ {
+    let addddd=JSON.parse(localStorage.getItem("todo"))?? []
+    let ull=document.getElementsByClassName("ullll")[0]
+    ull.innerHTML=" "
+    addddd.map((p)=>{
+    let li= document.createElement("li")
+    li.innerHTML=`
+    <li>${p.valuee}<button class="btn bg-danger ms-2" onclick="deletetaskk(${p.is})" >Delete</button></li>
+    <div></div>`
+     ull.appendChild(li)
+    })
+ }
+
+ function deletetaskk(id)
+ {
+    let addddd=JSON.parse(localStorage.getItem("todo"))?? []
+    addddd.splice(id,1)
+    localStorage.setItem("todo",JSON.stringify(addddd))
+    show()
+ }
+ show()
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</html>
