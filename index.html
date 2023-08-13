@@ -9,8 +9,8 @@
         .addtassk{
             width:300px;
             height: 400px;
-        
         }
+       
     </style>
 </head>
 <body class="bg-info">
@@ -21,6 +21,7 @@
         <input class="form-control  w-25" type="text">
      
         <button class="btn btn-outline-danger fw-bold ms-2">Add</button>
+        <button  class="btn  btn-outline-warning ms-2 text-dark  fw-bold "  id="Clearall">Clear All</button>
 
         
     </div>
@@ -31,9 +32,6 @@
       </ul>
     </div>
 
-
-
-
 </body>
 <script > 
 
@@ -42,20 +40,20 @@ let a=document.getElementsByClassName("btn")[0]
 a.addEventListener("click",()=>{
    
   let b=document.getElementsByClassName("form-control")[0].value
-  let addddd=JSON.parse(localStorage.getItem("todo"))?? []
+  let addddd=JSON.parse(sessionStorage.getItem("todo"))?? []
   console.log(addddd)
     let addd={
         id:addddd.length,
         valuee:b
     }
     addddd.push(addd)
-    localStorage.setItem("todo",JSON.stringify(addddd))
+    sessionStorage.setItem("todo",JSON.stringify(addddd))
     show()
 
 })
  function show()
  {
-    let addddd=JSON.parse(localStorage.getItem("todo"))?? []
+    let addddd=JSON.parse(sessionStorage.getItem("todo"))?? []
     let ull=document.getElementsByClassName("ullll")[0]
     ull.innerHTML=" "
     addddd.map((p)=>{
@@ -69,11 +67,21 @@ a.addEventListener("click",()=>{
 
  function deletetaskk(id)
  {
-    let addddd=JSON.parse(localStorage.getItem("todo"))?? []
+    let addddd=JSON.parse(sessionStorage.getItem("todo"))?? []
     addddd.splice(id,1)
-    localStorage.setItem("todo",JSON.stringify(addddd))
+    sessionStorage.setItem("todo",JSON.stringify(addddd))
     show()
  }
+ document.getElementById("Clearall").addEventListener("click",()=>{
+    // let addddd=JSON.parse(sessionStorage.getItem("todo"))?? []
+
+ 
+    // sessionStorage.setItem("todo",JSON.stringify(addddd))
+    // show()
+    sessionStorage.clear()
+    show()
+ 
+ })
  show()
 
 
